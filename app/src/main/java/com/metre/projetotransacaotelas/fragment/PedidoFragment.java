@@ -49,10 +49,14 @@ public class PedidoFragment extends Fragment {
 
         for(int i=0; i<20;i++){
             Button b = new Button(view.getContext());
-            b.setText("Teste");
+            b.setText("Teste "+i);
           //  int resID = getResources().getIdentifier("c"+i , "drawable", "android");
 
-            Drawable image = getContext().getResources().getDrawable(R.drawable.c1);
+          //  Drawable image = getContext().getResources().getDrawable(R.drawable.c1);
+            String foto = "c"+(i+1);
+            System.out.println("FOTO: "+foto);
+            Drawable image = getResources().getDrawable(getResources()
+                    .getIdentifier(foto, "drawable", "com.metre.projetotransacaotelas"));
 
             int h = image.getIntrinsicHeight();
             int w = image.getIntrinsicWidth();
@@ -62,7 +66,7 @@ public class PedidoFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent it = new Intent(getContext(), GrupoActivity.class);
-                    it.putExtra("grupo","grupo");
+                    it.putExtra("grupo",b.getText().toString());
                     ((AppCompatActivity) getContext()).startActivityForResult(it, 0);
                 }
             });

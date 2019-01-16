@@ -11,6 +11,16 @@ public class Produto implements Serializable {
     private Grupo grupo;
     private String evento;
 
+    public Produto() {
+
+    }
+
+    public Produto(Integer codigo, String descricao, BigDecimal preco) {
+        this.codigo = codigo;
+        this.descricao = descricao;
+        this.preco = preco;
+    }
+
     public Integer getCodigo() {
         return codigo;
     }
