@@ -1,23 +1,15 @@
 package com.metre.services;
 
+import com.metre.model.Grupo;
 import com.metre.model.Produto;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutoService {
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
-    public List<Produto> getProdutos(){
-        List<Produto> produtos = new ArrayList<>();
-        Produto coca = new Produto(1,"Coca Cola 350 ML - Lata", new BigDecimal("2.50"));
-        Produto fanta = new Produto(1,"Fanta Laranja 2 Litros", new BigDecimal("2.50"));
-        Produto sukita = new Produto(1,"Sukita 2 Litros", new BigDecimal("2.50"));
-        Produto sprite = new Produto(1,"Sprite 2 Litros", new BigDecimal("2.50"));
-        produtos.add(coca);
-        produtos.add(fanta);
-        produtos.add(sprite);
-        produtos.add(sukita);
-        return produtos;
-    }
+public interface ProdutoService {
+    @GET("produtos/{idgrupo}")
+    Call<List<Produto>> listarProdutos(@Path("idgrupo") Integer id);
 }

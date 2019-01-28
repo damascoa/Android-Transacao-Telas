@@ -1,5 +1,6 @@
 package com.metre.projetotransacaotelas.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableContainer;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,14 +17,24 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.metre.config.RetrofitConfig;
+import com.metre.model.Grupo;
 import com.metre.projetotransacaotelas.R;
 import com.metre.projetotransacaotelas.subtelas.GrupoActivity;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PedidoFragment extends Fragment {
     private LinearLayout conteudo;
     LinearLayout.LayoutParams paramButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+
+    public List<Grupo> grupos = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,21 +53,16 @@ public class PedidoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         System.out.println("=====================onViewCreated");
         conteudo = getView().findViewById(R.id.conteudo);
+        carregarGrupos(view);
+    }
 
-
-
-
-        for(int i=0; i<20;i++){
+    public void montarGrid(View view, List<Grupo> grupos){
+        for(Grupo g : grupos){
             Button b = new Button(view.getContext());
-            b.setText("Teste "+i);
-          //  int resID = getResources().getIdentifier("c"+i , "drawable", "android");
-
-          //  Drawable image = getContext().getResources().getDrawable(R.drawable.c1);
-            String foto = "c"+(i+1);
-            System.out.println("FOTO: "+foto);
+            b.setText(g.getDescricao());
+            String foto = "c"+(g.getImagem());
             Drawable image = getResources().getDrawable(getResources()
                     .getIdentifier(foto, "drawable", "com.metre.projetotransacaotelas"));
-
             int h = image.getIntrinsicHeight();
             int w = image.getIntrinsicWidth();
             image.setBounds( 0, 0, w, h );
@@ -66,14 +71,43 @@ public class PedidoFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent it = new Intent(getContext(), GrupoActivity.class);
-                    it.putExtra("grupo",b.getText().toString());
+                    it.putExtra("grupo",g);
                     ((AppCompatActivity) getContext()).startActivityForResult(it, 0);
                 }
             });
             conteudo.addView(b,paramButton);
         }
+    }
 
 
+    public void carregarGrupos(View view){
+        grupos = new ArrayList<>();
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(view.getContext());
+        progressDoalog.setMax(100);
+        progressDoalog.setMessage("Aguarde....");
+        progressDoalog.setTitle("Carregando");
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        // show it
+        progressDoalog.show();
+        Call<List<Grupo>> call = new RetrofitConfig().getGrupoService().listarGrupos();
+        call.enqueue(new Callback<List<Grupo>>() {
+
+
+
+            @Override
+            public void onResponse(Call<List<Grupo>> call, Response<List<Grupo>> response) {
+                grupos = response.body();
+
+                montarGrid(view,grupos);
+                progressDoalog.dismiss();
+            }
+            @Override
+            public void onFailure(Call<List<Grupo>> call, Throwable t) {
+                progressDoalog.dismiss();
+                Log.e("GrupoService", "Erro ao buscar o grupo: " + t.getMessage());
+            }
+        });
     }
 
 

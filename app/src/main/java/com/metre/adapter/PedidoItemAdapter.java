@@ -1,57 +1,49 @@
 package com.metre.adapter;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.metre.OUtil;
+import com.metre.model.PedidoItem;
 import com.metre.model.Produto;
 import com.metre.projetotransacaotelas.R;
-import com.metre.task.DownloadImageTask;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import okhttp3.OkHttpClient;
-
-public class ProdutoAdapter extends RecyclerView.Adapter<ViewHolderProduto>{
+public class PedidoItemAdapter extends RecyclerView.Adapter<ViewHolderPedidoItem>{
     int selected_position = 0;
-    private List<Produto> produtos;
+    private List<PedidoItem> itens;
 
-    public ProdutoAdapter(List<Produto> produtos) {
-        this.produtos = produtos;
+    public PedidoItemAdapter(List<PedidoItem> itens) {
+        this.itens = itens;
     }
 
     @NonNull
     @Override
-    public ViewHolderProduto onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rowproduto,viewGroup,false);
-        return new ViewHolderProduto(view,produtos,viewGroup.getContext());
+    public ViewHolderPedidoItem onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rowpedido,viewGroup,false);
+        return new ViewHolderPedidoItem(view,itens,viewGroup.getContext());
     }
 
 
 
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderProduto view, int i) {
-        if(produtos != null && produtos.size() > 0) {
-            Produto p = produtos.get(i);
-                view.txtNome.setText(p.getDescricao());
-                view.txtPreco.setText(OUtil.formatarMoeda2(p.getPreco()));
+    public void onBindViewHolder(@NonNull ViewHolderPedidoItem view, int i) {
+        if(itens != null && itens.size() > 0) {
+            PedidoItem p = itens.get(i);
+                view.txtNome.setText(p.getProduto());
+                view.txtQntPreco.setText(p.getQuantidade()+" x "+OUtil.formatarMoeda2(p.getPreco()));
               // new DownloadImageTask(view.imgProduto).execute("https://cdn.shoplightspeed.com/shops/604817/files/882430/coca-cola-usa-coke-24-12oz-case.jpg");
 
                 Picasso.get()
-                        .load(p.getFoto())
+                        .load(p.getIdProduto().getFoto())
                         .memoryPolicy(MemoryPolicy.NO_STORE)
                         .placeholder(R.drawable.placeholder)
                         .error(R.drawable.ic_cancel_black_24dp)
@@ -78,8 +70,8 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ViewHolderProduto>{
 
     @Override
     public int getItemCount() {
-        if(produtos != null) {
-            return produtos.size();
+        if(itens != null) {
+            return itens.size();
         }else{
             return 0;
         }

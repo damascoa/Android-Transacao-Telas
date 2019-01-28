@@ -9,14 +9,15 @@ public class PedidoItem implements Serializable {
     private Pedido idPedido;
     private Produto idProduto;
     private BigDecimal quantidade;
-    private BigDecimal custo = idProduto.getCusto();
+    private BigDecimal preco ;
+    private BigDecimal custo ;
     private BigDecimal total;
     private Date dtPedido = new Date();
     private Usuario idUsuario;
     private String situacao = "Registrado";
-    private String produto = idProduto.getDescricao();
+    private String produto;
     private Boolean baixado;
-    private String evento = idProduto.getEvento();
+    private String evento ;
     private Boolean balanca = Boolean.FALSE;
     private Boolean incideTaxaServico = Boolean.FALSE;
     private BigDecimal taxaServicoValor = BigDecimal.ZERO;
@@ -24,9 +25,20 @@ public class PedidoItem implements Serializable {
 
     public PedidoItem(Produto idProduto, BigDecimal quantidade, Usuario idUsuario) {
         this.idProduto = idProduto;
+        this.produto = this.idProduto.getDescricao();
         this.quantidade = quantidade;
         this.idUsuario = idUsuario;
-        this.total = this.quantidade.multiply(this.idProduto.getPreco());
+        this.preco = idProduto.getPreco();
+        this.total = quantidade.multiply(this.getPreco());
+    }
+
+    public void adicionarQuantidade(BigDecimal qnt){
+        setQuantidade(getQuantidade().add(qnt));
+        setTotal(getQuantidade().multiply(getPreco()));
+    }
+    public void diminuirQuantidade(BigDecimal qnt){
+        setQuantidade(getQuantidade().subtract(qnt));
+        setTotal(getQuantidade().multiply(getPreco()));
     }
 
     public Integer getIdPedidoItem() {
@@ -83,5 +95,21 @@ public class PedidoItem implements Serializable {
 
     public void setProduto(String produto) {
         this.produto = produto;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public Produto getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(Produto idProduto) {
+        this.idProduto = idProduto;
     }
 }

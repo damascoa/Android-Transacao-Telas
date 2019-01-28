@@ -4,29 +4,31 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class Produto implements Serializable {
-    private Integer codigo;
+    private Integer idProduto;
     private String descricao;
     private BigDecimal preco;
     private BigDecimal custo;
     private Grupo grupo;
     private String evento;
+    private String foto;
 
     public Produto() {
 
     }
 
-    public Produto(Integer codigo, String descricao, BigDecimal preco) {
-        this.codigo = codigo;
+    public Produto(Integer idProduto, String descricao, BigDecimal preco) {
+        this.idProduto = idProduto;
         this.descricao = descricao;
         this.preco = preco;
     }
 
-    public Integer getCodigo() {
-        return codigo;
+
+    public Integer getIdProduto() {
+        return idProduto;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setIdProduto(Integer idProduto) {
+        this.idProduto = idProduto;
     }
 
     public String getDescricao() {
@@ -67,5 +69,26 @@ public class Produto implements Serializable {
 
     public void setEvento(String evento) {
         this.evento = evento;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "idProduto=" + idProduto +
+                ", descricao='" + descricao + '\'' +
+                ", preco=" + preco +
+                ", custo=" + custo +
+                ", grupo=" + grupo +
+                ", evento='" + evento + '\'' +
+                ", foto='" + foto + '\'' +
+                '}';
     }
 }

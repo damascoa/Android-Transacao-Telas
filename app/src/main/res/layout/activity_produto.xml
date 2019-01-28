@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutContextMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".subtelas.ProdutoActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eee"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="384dp"
+            android:layout_margin="5dp"
+            android:background="#fff"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lblProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10sp"
+                    android:text="Coca Cola 2 Litros"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorAccent"
+                    android:textColorLink="@color/colorAccent"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnExcluir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:width="@dimen/default_gap"
+                    android:background="@null"
+                    android:drawableEnd="@drawable/ic_cancel_black_24dp"
+                    android:drawingCacheQuality="auto"
+                    android:onClick="excluirPedido" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="247dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imagemProduto"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="2"
+                    android:drawingCacheQuality="auto"
+                    android:scaleType="center"
+                    android:visibility="visible"
+                    tools:src="@tools:sample/avatars[3]" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:orientation="horizontal"
+                android:padding="5sp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/btnMenos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@null"
+                            android:clickable="true"
+                            android:src="@drawable/ic_remove_circle_outline_black_24dp"
+                            app:backgroundTint="@color/colorPrimary" />
+
+                        <EditText
+                            android:id="@+id/txtQnt"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="2"
+                            android:background="#7d8180"
+
+                            android:ems="10"
+                            android:focusableInTouchMode="false"
+                            android:inputType="textPersonName"
+                            android:selectAllOnFocus="false"
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textColor="#fff"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/btnMais"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:background="@null"
+                            android:clickable="true"
+                            android:src="@drawable/ic_add"
+                            app:backgroundTint="@color/colorPrimary" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/lblSubtotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5sp"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:text="Subtotal R$ 2,50"
+                        android:textColor="#fff"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="105dp"
+        android:layout_margin="5dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2">
+
+        <Button
+            android:id="@+id/btnLancarContinuar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:onClick="LancarEContinuar"
+            android:text="Lançar e Continuar"
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/btnLancarFinalizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorPrimary"
+            android:onClick="LancarEFinalizar"
+            android:text="Lançar e Finalizar"
+            android:textColor="@color/colorAccent" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
