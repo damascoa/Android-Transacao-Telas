@@ -49,25 +49,18 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ViewHolderProduto>{
                 view.txtNome.setText(p.getDescricao());
                 view.txtPreco.setText(OUtil.formatarMoeda2(p.getPreco()));
               // new DownloadImageTask(view.imgProduto).execute("https://cdn.shoplightspeed.com/shops/604817/files/882430/coca-cola-usa-coke-24-12oz-case.jpg");
+        if(p.getFoto() != null && !p.getFoto().isEmpty()){
+            Picasso.get()
+                    .load(p.getFoto())
+                    .memoryPolicy(MemoryPolicy.NO_STORE)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.ic_cancel_black_24dp)
 
-                Picasso.get()
-                        .load(p.getFoto())
-                        .memoryPolicy(MemoryPolicy.NO_STORE)
-                        .placeholder(R.drawable.placeholder)
-                        .error(R.drawable.ic_cancel_black_24dp)
+                    .into(view.imgProduto);
+        }else{
+            view.imgProduto.setImageResource(R.drawable.placeholder);
+        }
 
-                 .into(view.imgProduto, new Callback() {
-                     @Override
-                     public void onSuccess() {
-                         System.out.println("::::::::::::::::::::::::::::::::::::SUCESSO");
-                     }
-
-                     @Override
-                     public void onError(Exception e) {
-                         System.out.println(":::::::::::::::::::::::::::::::::::::::ERRO");
-                         e.printStackTrace();
-                     }
-                 });
                 view.imgProduto.setMaxHeight(64);
                 view.imgProduto.setMaxWidth(64);
 

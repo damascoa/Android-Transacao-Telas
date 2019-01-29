@@ -101,12 +101,19 @@ public class ProdutoActivity extends AppCompatActivity {
         }else{
             produto = null;
         }
-        Picasso.get().load(produto.getFoto())
-                .memoryPolicy(MemoryPolicy.NO_STORE)
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.ic_cancel_black_24dp)
-                .resize(250,300)
-                .into(imagemProduto);
+
+        if(produto.getFoto() != null && !produto.getFoto().isEmpty()){
+            Picasso.get().load(produto.getFoto())
+                    .memoryPolicy(MemoryPolicy.NO_STORE)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.ic_cancel_black_24dp)
+                    .resize(250,300)
+                    .into(imagemProduto);
+        }else{
+            imagemProduto.setImageResource(R.drawable.placeholder);
+        }
+
+
         imagemProduto.setMaxHeight(250);
         imagemProduto.setMaxWidth(250);
 

@@ -10,12 +10,13 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Pedido"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -25,9 +26,11 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/lstPedidos"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +38,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -70,8 +73,10 @@
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,6 +87,7 @@
             android:id="@+id/btnContinuar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:drawableStart="@drawable/ic_continua_add"
@@ -92,6 +98,7 @@
             android:id="@+id/btnReceber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:drawableLeft="@drawable/ic_money"

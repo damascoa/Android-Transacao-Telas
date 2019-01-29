@@ -1,15 +1,18 @@
 package com.metre.adapter;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.metre.OUtil;
+import com.metre.SessaoAplicacao;
 import com.metre.model.PedidoItem;
 import com.metre.model.Produto;
 import com.metre.projetotransacaotelas.R;
+import com.metre.projetotransacaotelas.subtelas.RecebimentoActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
@@ -19,9 +22,10 @@ import java.util.List;
 public class PedidoItemAdapter extends RecyclerView.Adapter<ViewHolderPedidoItem>{
     int selected_position = 0;
     private List<PedidoItem> itens;
+    private RecebimentoActivity ra;
 
-    public PedidoItemAdapter(List<PedidoItem> itens) {
-        this.itens = itens;
+    public PedidoItemAdapter(List<PedidoItem> itens, RecebimentoActivity ra) {
+        this.itens = itens; this.ra = ra;
     }
 
     @NonNull
@@ -40,29 +44,25 @@ public class PedidoItemAdapter extends RecyclerView.Adapter<ViewHolderPedidoItem
             PedidoItem p = itens.get(i);
                 view.txtNome.setText(p.getProduto());
                 view.txtQntPreco.setText(p.getQuantidade()+" x "+OUtil.formatarMoeda2(p.getPreco()));
-              // new DownloadImageTask(view.imgProduto).execute("https://cdn.shoplightspeed.com/shops/604817/files/882430/coca-cola-usa-coke-24-12oz-case.jpg");
-
-                Picasso.get()
-                        .load(p.getIdProduto().getFoto())
-                        .memoryPolicy(MemoryPolicy.NO_STORE)
-                        .placeholder(R.drawable.placeholder)
-                        .error(R.drawable.ic_cancel_black_24dp)
-
-                 .into(view.imgProduto, new Callback() {
-                     @Override
-                     public void onSuccess() {
-                         System.out.println("::::::::::::::::::::::::::::::::::::SUCESSO");
-                     }
-
-                     @Override
-                     public void onError(Exception e) {
-                         System.out.println(":::::::::::::::::::::::::::::::::::::::ERRO");
-                         e.printStackTrace();
-                     }
-                 });
+                view.txtTotal.setText(OUtil.formatarMoeda2(p.getTotal()));
+            if(p.getIdProduto().getFoto()!= null && !p.getIdProduto().getFoto().isEmpty()){
+                Picasso.get().load(p.getIdProduto().getFoto()).memoryPolicy(MemoryPolicy.NO_STORE)
+                        .placeholder(R.drawable.placeholder).error(R.drawable.ic_cancel_black_24dp).into(view.imgProduto);
+            }else{
+                view.imgProduto.setImageResource(R.drawable.placeholder);
+            }
                 view.imgProduto.setMaxHeight(64);
                 view.imgProduto.setMaxWidth(64);
 
+
+            view.btnExcluir.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SessaoAplicacao.removerItem(p);
+                    ra.carregarLista();
+
+                }
+            });
         }else{
             System.out.println("============================================PRODUTOS CHEGOU NULO");
         }

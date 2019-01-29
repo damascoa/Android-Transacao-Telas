@@ -36,10 +36,15 @@ public class RecebimentoActivity extends AppCompatActivity {
 
         lstPedidos =  findViewById(R.id.lstPedidos);
 
+        carregarLista();
+    }
+
+    public void carregarLista() {
         lstPedidos.setLayoutManager(new LinearLayoutManager(this));
-        pedidoItemAdapter = new PedidoItemAdapter(SessaoAplicacao.itensPedido);
+        pedidoItemAdapter = new PedidoItemAdapter(SessaoAplicacao.itensPedido,this);
         lstPedidos.setAdapter(pedidoItemAdapter);
     }
+
 
 
     @Override

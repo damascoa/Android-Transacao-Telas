@@ -10,7 +10,7 @@ public class RetrofitConfig {
     private final Retrofit retrofit;
 
     public RetrofitConfig() {
-        this.retrofit =  new Retrofit.Builder().baseUrl("http://192.168.1.199:8080/app/services/ticket/")
+        this.retrofit =  new Retrofit.Builder().baseUrl("http://191.54.89.83:8080/services/ticket/")
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();;
     }

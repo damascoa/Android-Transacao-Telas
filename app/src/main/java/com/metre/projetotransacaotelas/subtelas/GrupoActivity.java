@@ -53,15 +53,9 @@ public class GrupoActivity extends AppCompatActivity {
         }
         layoutContextMain = findViewById(R.id.layoutContextMain);
 
-
-
         lstProdutos = findViewById(R.id.lstProdutos);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         lstProdutos.setLayoutManager(manager);
-
-
-
-
     }
 
 
@@ -73,6 +67,7 @@ public class GrupoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Produto>> call, Response<List<Produto>> response) {
                 produtos = response.body();
+                System.out.println("PRODUTOS SIZE: "+response.body().size());
                 produtoAdapter = new ProdutoAdapter(produtos);
                 lstProdutos.setAdapter(produtoAdapter);
             }

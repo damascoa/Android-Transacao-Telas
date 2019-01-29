@@ -37,6 +37,7 @@ public class ViewHolderPedidoItem extends RecyclerView.ViewHolder{
         txtQntPreco = itemView.findViewById(R.id.txtQntPreco);
 
 
+
     }
 
 
