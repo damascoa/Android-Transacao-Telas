@@ -66,10 +66,15 @@ public class GrupoActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Produto>>() {
             @Override
             public void onResponse(Call<List<Produto>> call, Response<List<Produto>> response) {
-                produtos = response.body();
-                System.out.println("PRODUTOS SIZE: "+response.body().size());
-                produtoAdapter = new ProdutoAdapter(produtos);
-                lstProdutos.setAdapter(produtoAdapter);
+                if(response.body() != null){
+                    produtos = response.body();
+                    System.out.println("PRODUTOS SIZE: "+response.body().size());
+                    produtoAdapter = new ProdutoAdapter(produtos);
+                    lstProdutos.setAdapter(produtoAdapter);
+                }else{
+                    Toast.makeText(GrupoActivity.this, "Nenhum produto para este grupo!", Toast.LENGTH_LONG).show();
+                }
+
             }
             @Override
             public void onFailure(Call<List<Produto>> call, Throwable t) {

@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class RecebimentoActivity extends AppCompatActivity {
         lstPedidos =  findViewById(R.id.lstPedidos);
 
         carregarLista();
+
     }
 
     public void carregarLista() {
@@ -54,5 +56,17 @@ public class RecebimentoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void continuarPedido(View view){
+        finish();
+    }
+
+    public void receber(View view){
+
+    }
+
+
+
+
 
 }

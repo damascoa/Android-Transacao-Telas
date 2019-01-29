@@ -56,13 +56,13 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="199dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txtQntPreco"
-                    android:layout_width="87dp"
+                    android:layout_width="106dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="1 x  R$ 5,99"
@@ -70,23 +70,24 @@
 
                 <TextView
                     android:id="@+id/txtTotal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="137dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="R$ 5,99"
                     android:textAlignment="textEnd"
                     android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnExcluir"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_red_light"
+                    android:drawableBottom="@drawable/ic_delete"
+                    android:maxWidth="60dp" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnExcluir"
-                android:layout_width="60dp"
-                android:layout_height="25dp"
-                android:layout_marginLeft="35dp"
-                android:layout_weight="1"
-                android:background="@android:color/holo_red_light"
-                android:drawableBottom="@drawable/ic_delete"
-                android:maxWidth="60dp" />
         </LinearLayout>
 
     </LinearLayout>
