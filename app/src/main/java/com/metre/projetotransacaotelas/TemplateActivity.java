@@ -1,5 +1,6 @@
 package com.metre.projetotransacaotelas;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.metre.projetotransacaotelas.R;
 
 import com.metre.projetotransacaotelas.fragment.CaixaFragment;
 import com.metre.projetotransacaotelas.fragment.ConfiguracaoFragment;
@@ -37,6 +39,12 @@ public class TemplateActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Configuracao", 0);
+        if(pref.getString("ip", null) == null){
+            System.out.println("IP ESTA NULO");
+            navegarPorID(R.id.nav_config);
+        }
     }
 
     @Override
@@ -95,4 +103,25 @@ public class TemplateActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void navegarPorID(int id){
+        if (id == R.id.nav_home) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+        } else if (id == R.id.nav_pedido) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new PedidoFragment()).commit();
+        } else if (id == R.id.nav_caixa) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new CaixaFragment()).commit();
+        } else if (id == R.id.nav_impressoras) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ImpressorasFragment()).commit();
+        } else if (id == R.id.nav_config) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ConfiguracaoFragment()).commit();
+        } else if (id == R.id.nav_sair) {
+
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+
 }

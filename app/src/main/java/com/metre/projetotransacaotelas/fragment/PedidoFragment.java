@@ -7,6 +7,7 @@ import android.graphics.drawable.DrawableContainer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,11 +17,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.metre.SessaoAplicacao;
 import com.metre.config.RetrofitConfig;
 import com.metre.model.Grupo;
 import com.metre.projetotransacaotelas.R;
 import com.metre.projetotransacaotelas.subtelas.GrupoActivity;
+import com.metre.projetotransacaotelas.subtelas.RecebimentoActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -32,6 +36,7 @@ import retrofit2.Response;
 
 public class PedidoFragment extends Fragment {
     private LinearLayout conteudo;
+    private FloatingActionButton btnReceber;
     LinearLayout.LayoutParams paramButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
 
     public List<Grupo> grupos = new ArrayList<>();
@@ -39,6 +44,7 @@ public class PedidoFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         System.out.println("=====================onCreate");
+
         super.onCreate(savedInstanceState);
     }
 
@@ -46,6 +52,7 @@ public class PedidoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         System.out.println("=====================onCreateView");
+
         return inflater.inflate(R.layout.fragment_pedido, container, false);
     }
 
@@ -53,8 +60,34 @@ public class PedidoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         System.out.println("=====================onViewCreated");
         conteudo = getView().findViewById(R.id.conteudo);
+        btnReceber = getView().findViewById(R.id.btnReceber);
+
+        btnReceber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(SessaoAplicacao.itensPedido != null && SessaoAplicacao.itensPedido.size() > 0){
+                    Intent returnIntent = new Intent(getContext(),RecebimentoActivity.class);
+                    startActivity(returnIntent);
+                }else{
+                    Toast.makeText(getView().getContext(),"Não possui nenhum item adicionado!",Toast.LENGTH_SHORT);
+                }
+            }
+        });
         carregarGrupos(view);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("onActivityResult");
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        System.out.println("onActivityCreated");
+        super.onActivityCreated(savedInstanceState);
+    }
+
+
 
     public void montarGrid(View view, List<Grupo> grupos){
         for(Grupo g : grupos){
