@@ -10,13 +10,19 @@ import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.metre.SessaoAplicacao;
 import com.metre.projetotransacaotelas.R;
 
 public class ConfiguracaoFragment extends Fragment {
-    private AppCompatEditText txtIp;
-    private FloatingActionButton button;
+
+    private AppCompatEditText iptIP;
+    private AppCompatEditText iptPorta;
+    private AppCompatEditText iptContexto;
+    private Button btnConfirmar;
 
     @Nullable
     @Override
@@ -26,14 +32,38 @@ public class ConfiguracaoFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        button = view.findViewById(R.id.btnSalvar);
-        txtIp = view.findViewById(R.id.txtIp);
-        button.setOnClickListener(new View.OnClickListener() {
+        btnConfirmar = view.findViewById(R.id.btnConfirmar);
+        iptIP = view.findViewById(R.id.iptIP);
+        iptPorta = view.findViewById(R.id.iptPorta);
+        iptContexto = view.findViewById(R.id.iptContexto);
+        super.onViewCreated(view, savedInstanceState);
+        btnConfirmar = view.findViewById(R.id.btnConfirmar);
+        btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences pref = view.getContext().getSharedPreferences("Configuracao", 0);
+                salvarConfiguracao(view);
             }
         });
-        super.onViewCreated(view, savedInstanceState);
+    }
+
+    public void salvarConfiguracao(View view){
+        if(iptIP.getText() == null){
+            Toast.makeText(view.getContext(), "Informe o IP!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(iptPorta.getText() == null){
+            Toast.makeText(view.getContext(), "Informe a porta!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(iptContexto.getText() == null){
+            Toast.makeText(view.getContext(), "Informe o contexto!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        SharedPreferences.Editor editor =  SessaoAplicacao.preferencias.edit();
+        editor.putString("ip",iptIP.getText().toString());
+        editor.putString("porta",iptPorta.getText().toString());
+        editor.putString("context",iptContexto.getText().toString());
+        editor.apply();
+        Toast.makeText(view.getContext(), "Configuração efetuada com sucesso!", Toast.LENGTH_SHORT).show();
     }
 }

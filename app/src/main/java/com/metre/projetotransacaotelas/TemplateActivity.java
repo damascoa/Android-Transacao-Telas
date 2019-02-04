@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.metre.SessaoAplicacao;
 import com.metre.projetotransacaotelas.R;
 
 import com.metre.projetotransacaotelas.fragment.CaixaFragment;
@@ -40,8 +42,8 @@ public class TemplateActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("Configuracao", 0);
-        if(pref.getString("ip", null) == null){
+        SessaoAplicacao.preferencias = getApplicationContext().getSharedPreferences("Configuracao", 0);
+        if( SessaoAplicacao.preferencias .getString("ip", null) == null){
             System.out.println("IP ESTA NULO");
             navegarPorID(R.id.nav_config);
         }

@@ -90,6 +90,7 @@ public class PedidoFragment extends Fragment {
 
 
     public void montarGrid(View view, List<Grupo> grupos){
+
         for(Grupo g : grupos){
             Button b = new Button(view.getContext());
             b.setText(g.getDescricao());
@@ -131,13 +132,18 @@ public class PedidoFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Grupo>> call, Response<List<Grupo>> response) {
                 grupos = response.body();
-
+                if(grupos == null){
+                     Toast.makeText(getContext(), "Nenhum grupo foi carregado!", Toast.LENGTH_SHORT).show();
+                     progressDoalog.dismiss();
+                    return;
+                }
                 montarGrid(view,grupos);
                 progressDoalog.dismiss();
             }
             @Override
             public void onFailure(Call<List<Grupo>> call, Throwable t) {
                 progressDoalog.dismiss();
+                Toast.makeText(getContext(), "Erro ao buscar os grupos no serviço!", Toast.LENGTH_SHORT).show();
                 Log.e("GrupoService", "Erro ao buscar o grupo: " + t.getMessage());
             }
         });

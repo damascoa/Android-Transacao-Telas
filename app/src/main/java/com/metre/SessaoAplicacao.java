@@ -1,5 +1,7 @@
 package com.metre;
 
+import android.content.SharedPreferences;
+
 import com.metre.model.PedidoItem;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.Map;
 
 public class SessaoAplicacao {
     public static Map<Object, Object> session = new HashMap<>();
+    public static SharedPreferences preferencias;
 
     public static List<PedidoItem> itensPedido;
 

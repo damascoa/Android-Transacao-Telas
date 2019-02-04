@@ -6,18 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnSalvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:src="@drawable/ic_check_black_24dp"
-        app:backgroundTint="#FFFF7316"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <LinearLayout
         android:layout_width="368dp"
         android:layout_height="495dp"
@@ -44,7 +32,11 @@
             textColorHighlight="@co />
 
 
-    ]]>
+
+
+
+
+        ]]>
 
         <TextView
             android:id="@+id/textView5"
@@ -53,7 +45,7 @@
             android:text="IP do Servidor" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/txtIp"
+            android:id="@+id/iptIP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -61,5 +53,50 @@
             app:backgroundTint="@color/design_default_color_primary_dark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Porta" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/iptPorta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="number"
+            app:backgroundTint="@color/design_default_color_primary_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contexto" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/iptContexto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="text"
+            app:backgroundTint="@color/design_default_color_primary_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnConfirmar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#FFFF7316"
+            android:onClick="salvarConfiguracao"
+            android:text="Confirmar"
+            android:textColor="@color/colorAccent" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
