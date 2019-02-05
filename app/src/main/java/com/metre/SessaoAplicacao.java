@@ -3,6 +3,7 @@ package com.metre;
 import android.content.SharedPreferences;
 
 import com.metre.model.PedidoItem;
+import com.metre.model.Usuario;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +13,8 @@ import java.util.Map;
 public class SessaoAplicacao {
     public static Map<Object, Object> session = new HashMap<>();
     public static SharedPreferences preferencias;
+    public static Usuario usuario;
+
 
     public static List<PedidoItem> itensPedido;
 

@@ -1,5 +1,6 @@
 package com.metre.projetotransacaotelas.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.metre.SessaoAplicacao;
 import com.metre.projetotransacaotelas.R;
+import com.metre.projetotransacaotelas.subtelas.LoginActivity;
 
 public class ConfiguracaoFragment extends Fragment {
 
@@ -65,5 +67,7 @@ public class ConfiguracaoFragment extends Fragment {
         editor.putString("context",iptContexto.getText().toString());
         editor.apply();
         Toast.makeText(view.getContext(), "Configuração efetuada com sucesso!", Toast.LENGTH_SHORT).show();
+        Intent it =new Intent(getContext(),LoginActivity.class);
+        startActivity(it);
     }
 }

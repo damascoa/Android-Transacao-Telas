@@ -3,6 +3,7 @@ package com.metre.config;
 import com.metre.SessaoAplicacao;
 import com.metre.services.GrupoService;
 import com.metre.services.ProdutoService;
+import com.metre.services.UsuarioService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -31,6 +32,11 @@ public class RetrofitConfig {
 
     public ProdutoService getProdutoService(){
         ProdutoService ps = this.retrofit.create(ProdutoService.class);
+        return ps;
+    }
+
+    public UsuarioService getUsuarioService(){
+        UsuarioService ps = this.retrofit.create(UsuarioService.class);
         return ps;
     }
 }
