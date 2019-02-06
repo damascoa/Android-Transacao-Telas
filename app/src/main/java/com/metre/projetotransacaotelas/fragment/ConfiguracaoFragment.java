@@ -43,9 +43,15 @@ public class ConfiguracaoFragment extends Fragment {
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                salvarConfiguracao(view);
+                salvarConfiguracao(v);
             }
         });
+
+        if(SessaoAplicacao.preferencias.getString("ip","192.168.1.199") != null){
+            iptIP.setText(SessaoAplicacao.preferencias.getString("ip","192.168.1.199"));
+            iptPorta.setText(SessaoAplicacao.preferencias.getString("porta","8080"));
+            iptContexto.setText(SessaoAplicacao.preferencias.getString("contexto","app"));
+        }
     }
 
     public void salvarConfiguracao(View view){

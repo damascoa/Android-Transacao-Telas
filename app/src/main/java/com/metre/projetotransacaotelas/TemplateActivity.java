@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.metre.SessaoAplicacao;
+import com.metre.helper.CircleTransform;
 import com.metre.projetotransacaotelas.R;
 
 import com.metre.projetotransacaotelas.fragment.CaixaFragment;
@@ -102,23 +103,13 @@ public class TemplateActivity extends AppCompatActivity implements NavigationVie
             }
             Picasso.get()
                     .load(SessaoAplicacao.usuario.getFoto())
+                    .transform(new CircleTransform())
                     .memoryPolicy(MemoryPolicy.NO_STORE)
                     .placeholder(R.drawable.placeholder)
                     .error(R.drawable.ic_cancel_black_24dp)
-                    .into(imgUsuario, new Callback() {
-                        @Override
-                        public void onSuccess() {
-
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            Log.e("Erro carregar imagem:: ",e.getMessage());
-                            e.printStackTrace();
-                        }
-                    });
-            imgUsuario.setMaxHeight(64);
-            imgUsuario.setMaxWidth(64);
+                    .into(imgUsuario);
+            imgUsuario.setMaxHeight(24);
+            imgUsuario.setMaxWidth(24);
 
         }
 
