@@ -48,7 +48,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/txtGrupo"
                 app:layout_constraintStart_toStartOf="@+id/txtGrupo"
                 app:layout_constraintTop_toBottomOf="@+id/txtGrupo"
-                tools:itemCount="17" />
+                tools:itemCount="17"
+                tools:listitem="@layout/rowproduto" />
         </LinearLayout>
     </ScrollView>
 

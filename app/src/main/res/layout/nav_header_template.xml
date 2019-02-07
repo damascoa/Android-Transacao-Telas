@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="130dp"
-    android:background="#1a2229"
+    android:background="#ff5722"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -42,7 +42,7 @@
                 android:paddingTop="@dimen/nav_header_vertical_spacing"
                 android:text="@string/nav_header_title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="#889097"
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nav_header_subtitle"
-                android:textColor="#889097" />
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </LinearLayout>

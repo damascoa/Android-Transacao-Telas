@@ -94,20 +94,24 @@ public class PedidoFragment extends Fragment {
             Button b = new Button(view.getContext());
             b.setText(g.getDescricao());
             String foto = "c"+(g.getImagem());
-            Drawable image = getResources().getDrawable(getResources()
-                    .getIdentifier(foto, "drawable", "com.metre.projetotransacaotelas"));
-            int h = image.getIntrinsicHeight();
-            int w = image.getIntrinsicWidth();
-            image.setBounds( 0, 0, w, h );
-            b.setCompoundDrawables(image,null,null,null);
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent it = new Intent(getContext(), GrupoActivity.class);
-                    it.putExtra("grupo",g);
-                    ((AppCompatActivity) getContext()).startActivityForResult(it, 0);
-                }
-            });
+            try {
+                Drawable image = getResources().getDrawable(getResources().getIdentifier(foto, "drawable", "com.metre.projetotransacaotelas"));
+                int h = image.getIntrinsicHeight();
+                int w = image.getIntrinsicWidth();
+                image.setBounds( 0, 0, w, h );
+                b.setCompoundDrawables(image,null,null,null);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent it = new Intent(getContext(), GrupoActivity.class);
+                        it.putExtra("grupo",g);
+                        ((AppCompatActivity) getContext()).startActivityForResult(it, 0);
+                    }
+                });
+            }catch (Exception e){
+                System.out.println("Erro ao exception: "+e.getMessage());
+            }
+
             conteudo.addView(b,paramButton);
         }
     }

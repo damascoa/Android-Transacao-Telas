@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,8 +59,17 @@ public class ViewHolderCaixa extends RecyclerView.ViewHolder  implements View.On
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.setHeaderTitle("Select The Action");
-        menu.add(0, v.getId(), 0, "Call");//groupId, itemId, order, title
-        menu.add(0, v.getId(), 0, "SMS");
+        menu.setHeaderTitle("Ações");
+        MenuItem callItem = menu.add(0, v.getId(), 0, "Cancelar");//groupId, itemId, order, title
+        callItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                System.out.println("HELLLLLLLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                return false;
+            }
+        });
     }
+
+
+
 }
