@@ -139,4 +139,11 @@ public class Caixa {
     public void setIdEmpresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
+
+    @Override
+    public String toString() {
+        return "Caixa{" +
+                "idCaixa=" + idCaixa +
+                '}';
+    }
 }

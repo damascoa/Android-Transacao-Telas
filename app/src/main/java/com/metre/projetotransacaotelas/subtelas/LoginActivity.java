@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.metre.SessaoAplicacao;
 import com.metre.config.RetrofitConfig;
+import com.metre.model.Caixa;
 import com.metre.model.Usuario;
 import com.metre.projetotransacaotelas.R;
 import com.metre.projetotransacaotelas.TemplateActivity;
@@ -58,6 +59,31 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if(response.body() != null){
                     SessaoAplicacao.usuario = response.body();
+
+                    if(SessaoAplicacao.usuario.getCaixaCorrente() != null){
+                        try {
+                            System.out.println("ID OD CAIXA: "+SessaoAplicacao.usuario.getCaixaCorrente());
+                            Call<Caixa> callCaixa = new RetrofitConfig().getCaixaService().buscarCaixa(SessaoAplicacao.usuario.getCaixaCorrente());
+                            callCaixa.enqueue(new Callback<Caixa>() {
+                                @Override
+                                public void onResponse(Call<Caixa> call, Response<Caixa> response) {
+                                    System.out.println("Mensagem: "+response.message());
+                                    System.out.println("BODY: "+response.body());
+                                    SessaoAplicacao.caixa = new Caixa();;
+                                    SessaoAplicacao.caixa.setIdCaixa(response.body().getIdCaixa());
+                                    System.out.println("CAIXA: "+SessaoAplicacao.caixa);
+                                }
+                                @Override
+                                public void onFailure(Call<Caixa> call, Throwable t) {
+                                    Log.e("Erro  do caixa", t.getMessage());
+
+                                }
+                            });
+
+                        }catch (Exception e){
+                            System.out.println("Erro ao buscar o caixa!");
+                        }
+                    }
                     Intent it = new Intent(LoginActivity.this,TemplateActivity.class);
                     startActivity(it);
                 }else{

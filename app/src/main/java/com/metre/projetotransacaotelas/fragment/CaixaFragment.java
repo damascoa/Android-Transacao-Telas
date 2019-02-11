@@ -1,5 +1,6 @@
 package com.metre.projetotransacaotelas.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,21 +8,28 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.metre.SessaoAplicacao;
 import com.metre.adapter.CaixaAdapter;
+import com.metre.config.RetrofitConfig;
 import com.metre.model.CaixaItem;
 import com.metre.projetotransacaotelas.subtelas.AbrirCaixa;
 import com.metre.projetotransacaotelas.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CaixaFragment extends Fragment {
     private TextView lblSaldo;
@@ -31,7 +39,7 @@ public class CaixaFragment extends Fragment {
 
 
 
-
+    private ProgressDialog mProgressDialog;
     List<CaixaItem> movimento = new ArrayList<>();
     private CaixaAdapter caixaAdapter;
 
@@ -69,8 +77,42 @@ public class CaixaFragment extends Fragment {
 
     public void carregarMovimentoCaixa(){
         movimento = new ArrayList<>();
-        movimento.addAll(new CaixaItem().simulate());
-        lstMovimento.setAdapter(new CaixaAdapter(movimento));
+        mProgressDialog = new ProgressDialog(getContext());
+         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.show();
+        try {
+            System.out.println("ID DO CAIXA: "+SessaoAplicacao.usuario.getCaixaCorrente());
+            Call<List<CaixaItem>> call = new RetrofitConfig().getCaixaService().buscarMovimento(SessaoAplicacao.usuario.getCaixaCorrente());
+            call.enqueue(new Callback<List<CaixaItem>>() {
+                @Override
+                public void onResponse(Call<List<CaixaItem>> call, Response<List<CaixaItem>> response) {
+                    if(response.body() != null){
+                        movimento.addAll(response.body());
+                        lstMovimento.setAdapter(new CaixaAdapter(movimento));
+                    }
+                    if (mProgressDialog.isShowing()) {
+                        mProgressDialog.dismiss();
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<CaixaItem>> call, Throwable t) {
+                    Log.e("Erro ao buscar o movimento",t.getMessage());
+                    if (mProgressDialog.isShowing()) {
+                        mProgressDialog.dismiss();
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    }
+                }
+            });
+
+        }catch (Exception e){
+            System.err.println("Erro ao buscar o movimento do caixa!"+e.getMessage());
+        }
+
     }
 
 
