@@ -38,6 +38,7 @@ public class CaixaAdapter extends RecyclerView.Adapter<ViewHolderCaixa>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCaixa view, int i) {
         if(itens != null && itens.size() > 0) {
+            System.out.println("VEIO ITENS");
             CaixaItem p = itens.get(i);
                 view.txtMovimento.setText(p.getHistorico());
                 view.txtForma.setText(p.getFormaQuitacao());
@@ -50,6 +51,7 @@ public class CaixaAdapter extends RecyclerView.Adapter<ViewHolderCaixa>{
         if(itens != null) {
             return itens.size();
         }else{
+            System.out.println("ITEM COUNT 0");
             return 0;
         }
     }

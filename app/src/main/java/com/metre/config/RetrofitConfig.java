@@ -1,6 +1,7 @@
 package com.metre.config;
 
 import com.metre.SessaoAplicacao;
+import com.metre.services.CaixaService;
 import com.metre.services.GrupoService;
 import com.metre.services.ProdutoService;
 import com.metre.services.UsuarioService;
@@ -38,5 +39,10 @@ public class RetrofitConfig {
     public UsuarioService getUsuarioService(){
         UsuarioService ps = this.retrofit.create(UsuarioService.class);
         return ps;
+    }
+
+    public CaixaService getCaixaService(){
+        CaixaService cs = this.retrofit.create(CaixaService.class);
+        return cs;
     }
 }
