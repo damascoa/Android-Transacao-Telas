@@ -2,7 +2,9 @@ package com.metre;
 
 import android.content.SharedPreferences;
 
+import com.metre.model.Administradora;
 import com.metre.model.Caixa;
+import com.metre.model.FormaQuitacao;
 import com.metre.model.PedidoItem;
 import com.metre.model.Usuario;
 
@@ -18,6 +20,9 @@ public class SessaoAplicacao {
     public static Caixa caixa;
 
     public static List<PedidoItem> itensPedido;
+
+    public static List<FormaQuitacao> formasQuitacao;
+    public static List<Administradora> administradorasCartao;
 
 
     public static void addItem(PedidoItem pi){

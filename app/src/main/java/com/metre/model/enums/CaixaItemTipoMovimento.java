@@ -4,7 +4,7 @@ public enum CaixaItemTipoMovimento {
     CREDITO("C"), DEBITO("D");
     private String descricao;
 
-    private CaixaItemTipoMovimento(String descricao) {
+    CaixaItemTipoMovimento(String descricao) {
         this.descricao = descricao;
     }
 

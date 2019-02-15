@@ -1,5 +1,6 @@
 package com.metre.projetotransacaotelas.subtelas;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +14,10 @@ import android.widget.TextView;
 import com.metre.SessaoAplicacao;
 import com.metre.adapter.PedidoItemAdapter;
 import com.metre.adapter.ProdutoAdapter;
+import com.metre.model.Pedido;
 import com.metre.projetotransacaotelas.R;
+
+import java.math.BigDecimal;
 
 public class RecebimentoActivity extends AppCompatActivity {
     private RecyclerView lstPedidos;
@@ -62,7 +66,14 @@ public class RecebimentoActivity extends AppCompatActivity {
     }
 
     public void receber(View view){
+        Pedido pedido = new Pedido();
+        pedido.setIdUsuario(SessaoAplicacao.usuario.getIdUsuario());
+        pedido.setItens(SessaoAplicacao.itensPedido);
+        pedido.setTotal(pedido.getItens().stream().map(m -> m.getTotal()).reduce(BigDecimal::add).orElse(BigDecimal.ZERO));
 
+        Intent it = new Intent(view.getContext(), EncerramentoActivity.class);
+        it.putExtra("pedido",pedido);
+        view.getContext().startActivity(it);
     }
 
 

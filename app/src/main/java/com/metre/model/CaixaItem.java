@@ -154,10 +154,10 @@ public class CaixaItem {
         this.idFormaQuitacao = idFormaQuitacao;
     }
 
-    public List<CaixaItem> simulate(){
+    public List<CaixaItem> simulate() {
         List<CaixaItem> movimentos = new ArrayList<>();
-        for(int i= 0; i < 100; i++) {
-            movimentos.add(new CaixaItem("Recebimento do pedido "+i+1, new BigDecimal(100.00),"Dinheiro"));
+        for (int i = 0; i < 100; i++) {
+            movimentos.add(new CaixaItem("Recebimento do pedido " + i + 1, new BigDecimal(100.00), "Dinheiro"));
         }
         return movimentos;
     }

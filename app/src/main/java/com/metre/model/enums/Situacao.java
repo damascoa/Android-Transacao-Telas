@@ -2,7 +2,7 @@ package com.metre.model.enums;
 
 public enum Situacao {
 
-    FINALIZADO("Finalizado"),ABERTO("Aberto");
+    FINALIZADO("Finalizado"), ABERTO("Aberto");
     private String descricao;
 
     Situacao(String descricao) {

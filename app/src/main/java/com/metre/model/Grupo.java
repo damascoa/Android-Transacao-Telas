@@ -8,7 +8,6 @@ public class Grupo implements Serializable {
     private String imagem;
 
 
-
     public Integer getIdGrupo() {
         return idGrupo;
     }

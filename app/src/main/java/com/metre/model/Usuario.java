@@ -37,8 +37,8 @@ public class Usuario implements Serializable {
     }
 
     public String getFoto() {
-        if(foto.startsWith("http://replaceip")){
-            foto= foto.replace("replaceip",SessaoAplicacao.preferencias.getString("ip","192.168.1.199"));
+        if (foto.startsWith("http://replaceip")) {
+            foto = foto.replace("replaceip", SessaoAplicacao.preferencias.getString("ip", "192.168.1.199"));
         }
         return foto;
     }

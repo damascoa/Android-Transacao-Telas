@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cartão de Crédito"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/secondary"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -62,8 +62,9 @@
                     android:layout_weight="1"
                     android:text="R$ 5,90 "
                     android:textAlignment="textEnd"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="13sp" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

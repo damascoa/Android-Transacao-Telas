@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -36,7 +36,8 @@
         <activity
             android:name=".subtelas.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".subtelas.AbrirCaixa"></activity>
+        <activity android:name=".subtelas.AbrirCaixa" />
+        <activity android:name=".subtelas.EncerramentoActivity"></activity>
     </application>
 
 </manifest>

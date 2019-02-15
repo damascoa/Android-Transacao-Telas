@@ -2,6 +2,8 @@ package com.metre.config;
 
 import com.metre.SessaoAplicacao;
 import com.metre.services.CaixaService;
+import com.metre.services.CartaoService;
+import com.metre.services.FormasService;
 import com.metre.services.GrupoService;
 import com.metre.services.ProdutoService;
 import com.metre.services.UsuarioService;
@@ -43,6 +45,15 @@ public class RetrofitConfig {
 
     public CaixaService getCaixaService(){
         CaixaService cs = this.retrofit.create(CaixaService.class);
+        return cs;
+    }
+
+    public FormasService getFormaService(){
+        FormasService cs = this.retrofit.create(FormasService.class);
+        return cs;
+    }
+    public CartaoService getCartaoService(){
+        CartaoService cs = this.retrofit.create(CartaoService.class);
         return cs;
     }
 }

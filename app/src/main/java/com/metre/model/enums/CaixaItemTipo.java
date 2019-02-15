@@ -13,7 +13,7 @@ public enum CaixaItemTipo {
 
     private String tipo;
 
-    private CaixaItemTipo(String tipo) {
+    CaixaItemTipo(String tipo) {
         this.tipo = tipo;
     }
 

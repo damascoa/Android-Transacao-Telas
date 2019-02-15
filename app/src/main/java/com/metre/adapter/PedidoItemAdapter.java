@@ -42,11 +42,11 @@ public class PedidoItemAdapter extends RecyclerView.Adapter<ViewHolderPedidoItem
     public void onBindViewHolder(@NonNull ViewHolderPedidoItem view, int i) {
         if(itens != null && itens.size() > 0) {
             PedidoItem p = itens.get(i);
-                view.txtNome.setText(p.getProduto());
+                view.txtNome.setText(p.getProduto().getDescricao());
                 view.txtQntPreco.setText(p.getQuantidade()+" x "+OUtil.formatarMoeda2(p.getPreco()));
                 view.txtTotal.setText(OUtil.formatarMoeda2(p.getTotal()));
-            if(p.getIdProduto().getFoto()!= null && !p.getIdProduto().getFoto().isEmpty()){
-                Picasso.get().load(p.getIdProduto().getFoto()).memoryPolicy(MemoryPolicy.NO_STORE)
+            if(p.getProduto().getFoto()!= null && !p.getProduto().getFoto().isEmpty()){
+                Picasso.get().load(p.getProduto().getFoto()).memoryPolicy(MemoryPolicy.NO_STORE)
                         .placeholder(R.drawable.placeholder).error(R.drawable.ic_cancel_black_24dp).into(view.imgProduto);
             }else{
                 view.imgProduto.setImageResource(R.drawable.placeholder);

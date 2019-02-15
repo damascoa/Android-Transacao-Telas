@@ -1,50 +1,53 @@
 package com.metre.model;
 
-import com.metre.model.enums.Situacao;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Pedido implements Serializable {
-    private Integer idPeido;
-    private Usuario idUsuario;
-    private Situacao situacao;
-    private Date dtAbertura;
-    private Date dtFechamento;
-    private BigDecimal totalPedido;
-    private BigDecimal valorRecebido;
-    private Integer idMesa = 999999999;
+    private Integer idPedido;
+    private Integer idUsuario;
+    private BigDecimal total;
+    private List<PedidoItem> itens;
+    private List<PedidoRecebimento> recebimentos;
 
-    private List<PedidoItem> itensPedido = new ArrayList<>();
-
-    public Pedido(Usuario idUsuario, List<PedidoItem> itensPedido) {
-        this.idUsuario = idUsuario;
-        this.itensPedido = itensPedido;
-        this.dtAbertura = new Date();
-        this.dtFechamento = new Date();
-        this.itensPedido = itensPedido;
-        this.totalPedido =  itensPedido.stream().map(PedidoItem::getTotal).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
-        this.valorRecebido = BigDecimal.ZERO;
-        this.situacao = Situacao.ABERTO;
-
+    public Integer getIdPedido() {
+        return idPedido;
     }
 
-    public Usuario getIdUsuario() {
+    public void setIdPedido(Integer idPedido) {
+        this.idPedido = idPedido;
+    }
+
+    public Integer getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public List<PedidoItem> getItensPedido() {
-        return itensPedido;
+    public BigDecimal getTotal() {
+        return total;
     }
 
-    public void setItensPedido(List<PedidoItem> itensPedido) {
-        this.itensPedido = itensPedido;
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public List<PedidoItem> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<PedidoItem> itens) {
+        this.itens = itens;
+    }
+
+    public List<PedidoRecebimento> getRecebimentos() {
+        return recebimentos;
+    }
+
+    public void setRecebimentos(List<PedidoRecebimento> recebimentos) {
+        this.recebimentos = recebimentos;
     }
 }

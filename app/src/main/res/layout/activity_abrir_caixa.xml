@@ -6,4 +6,81 @@
     android:layout_height="match_parent"
     tools:context=".subtelas.AbrirCaixa">
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/iptVlaooor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorPrimary">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/iptValor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:drawableLeft="@drawable/ic_money_orange"
+                android:hint="Valor de Troco"
+                android:inputType="numberDecimal"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textColorLink="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Período"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+
+            android:spinnerMode="dialog" />
+
+        <Button
+            android:id="@+id/btnAbrirCaixa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn_round_primary"
+            android:bottomLeftRadius="10dp"
+
+            android:bottomRightRadius="10dp"
+            android:onClick="abrirCaixa"
+            android:text="Abrir Caixa"
+            android:textColor="@color/colorAccent"
+            android:topLeftRadius="10dp"
+            android:topRightRadius="10dp" />
+
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
