@@ -2,6 +2,7 @@ package com.metre;
 
 import android.content.SharedPreferences;
 
+import com.metre.helper.Dipositivo;
 import com.metre.model.Administradora;
 import com.metre.model.Caixa;
 import com.metre.model.FormaQuitacao;
@@ -18,11 +19,14 @@ public class SessaoAplicacao {
     public static SharedPreferences preferencias;
     public static Usuario usuario;
     public static Caixa caixa;
+    public static List<Dipositivo> dispositivos;
 
     public static List<PedidoItem> itensPedido;
 
     public static List<FormaQuitacao> formasQuitacao;
     public static List<Administradora> administradorasCartao;
+    public static ServicoImpressao servicoImpressao;
+    public static String impressoraSelecionada;
 
 
     public static void addItem(PedidoItem pi){

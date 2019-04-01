@@ -26,6 +26,7 @@ import retrofit2.Response;
 public class AbrirCaixa extends AppCompatActivity {
     AppCompatEditText iptValor;
     Spinner periodo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +98,7 @@ public class AbrirCaixa extends AppCompatActivity {
             public void onResponse(Call<Caixa> call, Response<Caixa> response) {
                 if(response.body() != null){
                     SessaoAplicacao.caixa = response.body();
+                    SessaoAplicacao.usuario.setCaixaCorrente(SessaoAplicacao.caixa.getIdCaixa());
                 }
             }
 

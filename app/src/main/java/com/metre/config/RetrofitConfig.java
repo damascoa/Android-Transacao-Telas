@@ -5,6 +5,7 @@ import com.metre.services.CaixaService;
 import com.metre.services.CartaoService;
 import com.metre.services.FormasService;
 import com.metre.services.GrupoService;
+import com.metre.services.PedidoService;
 import com.metre.services.ProdutoService;
 import com.metre.services.UsuarioService;
 
@@ -54,6 +55,10 @@ public class RetrofitConfig {
     }
     public CartaoService getCartaoService(){
         CartaoService cs = this.retrofit.create(CartaoService.class);
+        return cs;
+    }
+    public PedidoService getPedidoService(){
+        PedidoService cs = this.retrofit.create(PedidoService.class);
         return cs;
     }
 }

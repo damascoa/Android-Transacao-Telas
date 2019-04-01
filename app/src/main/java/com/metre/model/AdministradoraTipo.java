@@ -1,6 +1,7 @@
 package com.metre.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class AdministradoraTipo {
     private Integer idAdministradoraTipo;
@@ -8,6 +9,7 @@ public class AdministradoraTipo {
     private String tipo;
     private BigDecimal taxa;
     private Integer prazo;
+    private List<Bandeira> bandeiras;
 
     public Integer getIdAdministradoraTipo() {
         return idAdministradoraTipo;
@@ -47,5 +49,13 @@ public class AdministradoraTipo {
 
     public void setPrazo(Integer prazo) {
         this.prazo = prazo;
+    }
+
+    public List<Bandeira> getBandeiras() {
+        return bandeiras;
+    }
+
+    public void setBandeiras(List<Bandeira> bandeiras) {
+        this.bandeiras = bandeiras;
     }
 }

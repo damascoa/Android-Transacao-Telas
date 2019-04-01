@@ -23,6 +23,7 @@ import com.metre.SessaoAplicacao;
 import com.metre.config.RetrofitConfig;
 import com.metre.model.Grupo;
 import com.metre.projetotransacaotelas.R;
+import com.metre.projetotransacaotelas.subtelas.AbrirCaixa;
 import com.metre.projetotransacaotelas.subtelas.GrupoActivity;
 import com.metre.projetotransacaotelas.subtelas.RecebimentoActivity;
 
@@ -43,27 +44,30 @@ public class PedidoFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        System.out.println("=====================onCreate");
-
         super.onCreate(savedInstanceState);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        System.out.println("=====================onCreateView");
         return inflater.inflate(R.layout.fragment_pedido, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        System.out.println("=====================onViewCreated");
         conteudo = getView().findViewById(R.id.conteudo);
         btnReceber = getView().findViewById(R.id.btnReceber);
 
         btnReceber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SessaoAplicacao.caixa == null){
+                    Toast.makeText(getView().getContext(),"Faça a abertura do caixa primeiro!",Toast.LENGTH_LONG);
+                    Intent returnIntent = new Intent(getContext(),AbrirCaixa.class);
+                    startActivityForResult(returnIntent,109);
+                    return;
+                }
+
                 if(SessaoAplicacao.itensPedido != null && SessaoAplicacao.itensPedido.size() > 0){
                     Intent returnIntent = new Intent(getContext(),RecebimentoActivity.class);
                     startActivity(returnIntent);
@@ -77,6 +81,7 @@ public class PedidoFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("DATA CODE: "+resultCode);
         System.out.println("onActivityResult");
     }
 
@@ -123,6 +128,8 @@ public class PedidoFragment extends Fragment {
         progressDoalog = new ProgressDialog(view.getContext());
         progressDoalog.setMax(100);
         progressDoalog.setMessage("Aguarde....");
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDoalog.setIndeterminate(true);
         progressDoalog.setTitle("Carregando");
         progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         // show it

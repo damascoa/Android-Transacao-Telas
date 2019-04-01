@@ -145,6 +145,12 @@ public class ProdutoActivity extends AppCompatActivity {
 
 
     public void LancarEContinuar(View view){
+        if(SessaoAplicacao.caixa == null){
+            Toast.makeText(view.getContext(),"Faça a abertura do caixa primeiro!",Toast.LENGTH_LONG);
+            Intent returnIntent = new Intent(view.getContext(),AbrirCaixa.class);
+            startActivity(returnIntent);
+            return;
+        }
         SessaoAplicacao.addItem(pedidoItem);
         Toast.makeText(this, "Item adicionado!", Toast.LENGTH_LONG).show();
         Intent returnIntent = new Intent();
@@ -153,6 +159,14 @@ public class ProdutoActivity extends AppCompatActivity {
 
     }
     public void LancarEFinalizar(View view){
+        if(SessaoAplicacao.caixa == null){
+            Toast.makeText(view.getContext(),"Faça a abertura do caixa primeiro!",Toast.LENGTH_LONG);
+            Intent returnIntent = new Intent(view.getContext(),AbrirCaixa.class);
+            startActivity(returnIntent);
+            return;
+        }
+        SessaoAplicacao.addItem(pedidoItem);
+        Toast.makeText(this, "Item adicionado!", Toast.LENGTH_LONG).show();
         Intent returnIntent = new Intent();
         setResult(101,returnIntent);
         finish();

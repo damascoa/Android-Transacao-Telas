@@ -12,7 +12,7 @@ public class CaixaItem {
     private Integer idCaixaItem;
     private String historico;
     private BigDecimal valor;
-    private CaixaItemTipoMovimento tipoMovimento;
+    private String tipoMovimento;
     private Date data;
     private Date hora;
     private String formaQuitacao;
@@ -58,11 +58,11 @@ public class CaixaItem {
         this.valor = valor;
     }
 
-    public CaixaItemTipoMovimento getTipoMovimento() {
+    public String getTipoMovimento() {
         return tipoMovimento;
     }
 
-    public void setTipoMovimento(CaixaItemTipoMovimento tipoMovimento) {
+    public void setTipoMovimento(String tipoMovimento) {
         this.tipoMovimento = tipoMovimento;
     }
 

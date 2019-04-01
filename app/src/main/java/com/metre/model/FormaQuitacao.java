@@ -5,6 +5,13 @@ public class FormaQuitacao {
     private String descricao;
     private String forma;
 
+    public FormaQuitacao() {
+    }
+
+    public FormaQuitacao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public Integer getIdFormaQuitacao() {
         return idFormaQuitacao;
     }

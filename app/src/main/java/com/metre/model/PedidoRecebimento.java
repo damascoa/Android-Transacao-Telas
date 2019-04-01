@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 public class PedidoRecebimento implements Serializable {
 
     private Integer idFormaRecebimento;
+    private String forma;
     private BigDecimal valor;
     private Integer idAdministradora;
     private Integer idAdministradoraTipo;
@@ -13,6 +14,14 @@ public class PedidoRecebimento implements Serializable {
     private String contasReceberJson;
     private String despesas;
 
+
+    public String getForma() {
+        return forma;
+    }
+
+    public void setForma(String forma) {
+        this.forma = forma;
+    }
 
     public Integer getIdFormaRecebimento() {
         return idFormaRecebimento;
@@ -68,5 +77,19 @@ public class PedidoRecebimento implements Serializable {
 
     public void setDespesas(String despesas) {
         this.despesas = despesas;
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoRecebimento{" +
+                "idFormaRecebimento=" + idFormaRecebimento +
+                ", forma='" + forma + '\'' +
+                ", valor=" + valor +
+                ", idAdministradora=" + idAdministradora +
+                ", idAdministradoraTipo=" + idAdministradoraTipo +
+                ", idBandeira=" + idBandeira +
+                ", contasReceberJson='" + contasReceberJson + '\'' +
+                ", despesas='" + despesas + '\'' +
+                '}';
     }
 }

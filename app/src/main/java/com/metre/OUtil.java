@@ -9,4 +9,11 @@ public class OUtil {
         DecimalFormat df = new DecimalFormat("#,###,##0.00");
         return df.format(val);
     }
+
+    public static String completaComZerosEsquerda(String campo, int length) {
+        while (campo.length() < length) {
+            campo = "0" + campo;
+        }
+        return campo;
+    }
 }

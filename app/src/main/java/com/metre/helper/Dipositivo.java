@@ -34,4 +34,13 @@ public class Dipositivo {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
+
+    @Override
+    public String toString() {
+        return "Dipositivo{" +
+                "nome='" + nome + '\'' +
+                ", mac='" + mac + '\'' +
+                ", situacao='" + situacao + '\'' +
+                '}';
+    }
 }

@@ -6,7 +6,7 @@ public class Administradora {
     private Integer idAdministradora;
     private String nome;
     private List<AdministradoraTipo> administradoraTipo;
-    private List<Bandeira> bandeiras;
+
 
 
     public Administradora() {
@@ -36,11 +36,4 @@ public class Administradora {
         this.administradoraTipo = administradoraTipo;
     }
 
-    public List<Bandeira> getBandeiras() {
-        return bandeiras;
-    }
-
-    public void setBandeiras(List<Bandeira> bandeiras) {
-        this.bandeiras = bandeiras;
-    }
 }

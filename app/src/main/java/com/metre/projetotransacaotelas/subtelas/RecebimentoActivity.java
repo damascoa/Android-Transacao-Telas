@@ -1,16 +1,19 @@
 package com.metre.projetotransacaotelas.subtelas;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.metre.OUtil;
 import com.metre.SessaoAplicacao;
 import com.metre.adapter.PedidoItemAdapter;
 import com.metre.adapter.ProdutoAdapter;
@@ -34,6 +37,10 @@ public class RecebimentoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recebimento);
         setTitle("Recebimento");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        System.out.println("ONCREATE");
+        if(SessaoAplicacao.itensPedido == null || SessaoAplicacao.itensPedido.size() == 0){
+            finish();
+        }
 
         txtSubtotal = findViewById(R.id.txtSubtotal);
         btnContinuar = findViewById(R.id.btnContinuar);
@@ -43,7 +50,29 @@ public class RecebimentoActivity extends AppCompatActivity {
 
         carregarLista();
 
+        txtSubtotal.setText(OUtil.formatarMoeda2(SessaoAplicacao.itensPedido.stream().map(m -> m.getTotal()).reduce(BigDecimal::add).orElse(BigDecimal.ZERO)));
+
     }
+
+
+    @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        System.out.println("onCreateView");
+
+        return super.onCreateView(name, context, attrs);
+    }
+
+
+    @Override
+    protected void onRestart() {
+        System.out.println("RESTART");
+        if(SessaoAplicacao.itensPedido == null || SessaoAplicacao.itensPedido.size() == 0){
+            finish();
+        }
+        super.onRestart();
+    }
+
+
 
     public void carregarLista() {
         lstPedidos.setLayoutManager(new LinearLayoutManager(this));

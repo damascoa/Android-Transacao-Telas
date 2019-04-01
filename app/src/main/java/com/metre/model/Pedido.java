@@ -50,4 +50,15 @@ public class Pedido implements Serializable {
     public void setRecebimentos(List<PedidoRecebimento> recebimentos) {
         this.recebimentos = recebimentos;
     }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "idPedido=" + idPedido +
+                ", idUsuario=" + idUsuario +
+                ", total=" + total +
+                ", itens=" + itens +
+                ", recebimentos=" + recebimentos +
+                '}';
+    }
 }

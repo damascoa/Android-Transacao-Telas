@@ -6,16 +6,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class PedidoItem implements Serializable {
-
+    private Integer idPedidoItem;
     private Integer idProduto;
-
     private BigDecimal preco;
-
     private BigDecimal quantidade;
-
     private BigDecimal total;
+    private String nomeProduto;
     @JsonIgnore
     private Produto produto;
+
+    public PedidoItem() {
+    }
 
     public PedidoItem(Produto idProduto, BigDecimal quantidade, Usuario idUsuario) {
         this.idProduto = idProduto.getIdProduto();
@@ -74,5 +75,33 @@ public class PedidoItem implements Serializable {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public Integer getIdPedidoItem() {
+        return idPedidoItem;
+    }
+
+    public void setIdPedidoItem(Integer idPedidoItem) {
+        this.idPedidoItem = idPedidoItem;
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoItem{" +
+                "idPedidoItem=" + idPedidoItem +
+                ", idProduto=" + idProduto +
+                ", preco=" + preco +
+                ", quantidade=" + quantidade +
+                ", total=" + total +
+                ", produto=" + produto +
+                '}';
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
 }

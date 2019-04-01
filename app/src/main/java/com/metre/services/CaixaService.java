@@ -3,8 +3,10 @@ package com.metre.services;
 import com.metre.model.AbrirCaixa;
 import com.metre.model.Caixa;
 import com.metre.model.CaixaItem;
+import com.metre.model.FechamentoCaixa;
 import com.metre.model.Grupo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import retrofit2.Call;
@@ -30,4 +32,13 @@ public interface CaixaService {
 
     @GET("caixa/listar/{idCaixa}")
     Call<List<CaixaItem>> buscarMovimento(@Path("idCaixa")Integer idCaixa);
+
+    @GET("caixa/saldo/{idCaixa}")
+    Call<String> saldo(@Path("idCaixa")Integer idCaixa);
+
+
+    @GET("caixa/fechar/{idCaixa}")
+    Call<FechamentoCaixa> fecharCaixa(@Path("idCaixa")Integer idCaixa);
+
+
 }

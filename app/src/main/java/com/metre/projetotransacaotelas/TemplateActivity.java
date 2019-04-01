@@ -1,11 +1,20 @@
 package com.metre.projetotransacaotelas;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +31,7 @@ import android.widget.TextView;
 
 import com.metre.SessaoAplicacao;
 import com.metre.helper.CircleTransform;
+import com.metre.helper.Dipositivo;
 import com.metre.projetotransacaotelas.R;
 
 import com.metre.projetotransacaotelas.fragment.CaixaFragment;
@@ -34,11 +44,15 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TemplateActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView imgUsuario;
     private TextView txtNomeUsuario;
     private TextView txtPerfil;
 
+    List<Dipositivo> dispositivos;
 
 
 
@@ -53,7 +67,6 @@ public class TemplateActivity extends AppCompatActivity implements NavigationVie
         if(toolbar == null){
             System.out.println("toolbar É NULO");
         }
-
 
 
 
@@ -201,6 +214,8 @@ public class TemplateActivity extends AppCompatActivity implements NavigationVie
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
+
+
 
 
 }
